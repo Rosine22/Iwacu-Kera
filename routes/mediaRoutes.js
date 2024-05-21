@@ -6,7 +6,7 @@ const {getMedias, getMediaById, createMedia, updateMedia,deleteMedia} = require(
 mediaRoutes.get('/list', getMedias);
 mediaRoutes.get('/:id', getMediaById);
 mediaRoutes.post('/create', createMedia);
-mediaRoutes.put('update/:id', updateMedia);
+mediaRoutes.put('update/v1/:id', updateMedia);
 mediaRoutes.delete('delete/:id', deleteMedia);
 
 module.exports = {mediaRoutes};
