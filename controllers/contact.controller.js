@@ -46,7 +46,7 @@ const contactController = {
         const contactUpdate = await contactModel.findByIdAndUpdate(req.params.id, req.body,{set:true}) 
         try {
           if(!contactUpdate) {
-            return res.status(404).json({msg:`No task with this id`})
+            return res.status(400).json({msg:`No task with this id`})
           }
           res.status(200).json({
             task: contactUpdate

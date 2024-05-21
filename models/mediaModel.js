@@ -28,23 +28,19 @@ const MediaSchema = new mongoose.Schema({
   
   views: {
     type: Number,
-    required: false,
-    default: 0
+    required: false
   },
   likes: {
     type: Number,
-    required: false,
-    default: 0
+    required: false
   },
   dislikes: {
     type: Number,
-    required: false,
-    default: 0
+    required: false
   },
   comments: {
     type: Number,
-    required: false,
-    default: 0
+    required: false
   },
   Owner: {
     type: String,

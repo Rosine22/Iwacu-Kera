@@ -22,7 +22,7 @@ const createEvent = async (req, res) => {
     const newEvent = await event.save();
     res.status(201).json(newEvent);
   } catch (error) {
-    res.status(400).json({ message: errorMessage });
+    res.status(400).json({ message: error });
   }
 };
 

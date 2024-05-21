@@ -39,20 +39,16 @@ const createMedia = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
-
-const updateMedia = async (req, res) => {
+const updateMedia = async(req, res) => {
+  const media = await Media.findByIdAndUpdate(req.params.id, req.body,{set:true}) 
   try {
-    const media = await Media.findByIdAndUpdate(
-      { _id: req.params.id },
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    if (!media) return res.status(404).send('No media found');
-    res.send(media);
-  } catch (err) {
-    res.status(500).send(err.message);
+    if(!media) {
+      return res.status(404).json({msg:`No media found`})
+    }
+    res.status(200).send(media)
+  }
+  catch(err) {
+    console.log(err)
   }
 };
 
@@ -62,6 +58,7 @@ const deleteMedia = async (req, res) => {
     if (!media) return res.status(404).send('No media found');
     res.send(media);
   } catch (err) {
+    console.log(err)
     res.status(500).send(err.message);
   }
 };
