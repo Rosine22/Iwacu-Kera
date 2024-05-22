@@ -125,7 +125,7 @@
         }
       }
     },
-    "/api/contacts": {
+    "/api/contacts/create": {
       "post": {
         "tags": ["Contacts"],
         "summary": "Create a new contact",
@@ -164,7 +164,7 @@
         }
       }
     },
-    "/api/contacts/{id}": {
+    "/api/contacts/:id": {
       "get": {
         "tags": ["Contacts"],
         "summary": "Get contact by ID",
@@ -203,6 +203,7 @@
           }
         }
       },
+      
       "put": {
         "tags": ["Contacts"],
         "summary": "Update a contact",
@@ -291,7 +292,7 @@
         }
       }
     },
-    "/api/events": {
+    "/api/events/create": {
       "post": {
         "tags": ["Events"],
         "summary": "Create a new event",
@@ -330,7 +331,7 @@
         }
       }
     },
-    "/api/events/{id}": {
+    "/api/events/:id": {
       "get": {
         "tags": ["Events"],
         "summary": "Get event by ID",
@@ -456,7 +457,7 @@
         }
       }
     },
-    "/api/pro": {
+    "/api/pro/create": {
       "post": {
         "tags": ["Proverbs"],
         "summary": "Create a new proverb",
@@ -495,10 +496,10 @@
         }
       }
     },
-    "/api/proverbs/{id}": {
+    "/api/pro/list": {
       "get": {
         "tags": ["Proverbs"],
-        "summary": "Get proverb by ID",
+        "summary": "Get proverb by list",
         "description": "Retrieves a proverb by its ID",
         "parameters": [
           {
@@ -533,7 +534,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "api/pro/update/:id": {
       "put": {
         "tags": ["Proverbs"],
         "summary": "Update a proverb",
@@ -551,11 +554,10 @@
         ],
         "requestBody": {
           "required": true,
-          
           "content": {
-                      "application/json": {
-                        "schema": {
-                          "$ref": "#/components/schemas/Proverb"
+          "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Proverb"
                         }
                       }
                     }
@@ -582,7 +584,9 @@
                       }
                     }
                   }
-                },
+                }
+              },
+              "api/pro/delete/:id": {
                 "delete": {
                   "tags": ["Proverbs"],
                   "summary": "Delete a proverb",
@@ -619,10 +623,9 @@
                         }
                       }
                     }
-                  }
-                }
-              },
-              "/api/media": {
+                  },
+                
+              "/api/media/create": {
                 "post": {
                   "tags": ["Media"],
                   "summary": "Upload new media",
@@ -667,7 +670,7 @@
                   }
                 }
               },
-              "/api/media/{id}": {
+              "/api/media/:id": {
                 "get": {
                   "tags": ["Media"],
                   "summary": "Get media item by ID",
@@ -705,8 +708,9 @@
                       }
                     }
                   }
-                },
-                "/api/media/{list}": {
+                }
+              },
+                "/api/media/list": {
                   "get": {
                   "tags": ["Media"],
                   "summary": "Get media items by list",
@@ -749,7 +753,7 @@
                   }
                 }
               },
-
+              "api/media/update/:id": {
                 "put": {
                   "tags": ["Media"],
                   "summary": "Update a media item",
@@ -797,7 +801,10 @@
                       }
                     }
                   }
-                },
+                }
+              },
+        
+              "api/media/delete/:id":{
                 "delete": {
                   "tags": ["Media"],
                   "summary": "Delete a media item",
@@ -830,7 +837,10 @@
                   }
                 }
               }
-            },
+            }
+          }
+        },
+
             "components": {
               "schemas": {
                 "Admin": {
@@ -844,8 +854,7 @@
                       "format": "password",
                       "required": true
                     },
-                  
-"role": {
+                  "role": {
             "type": "string",
             "required": true
           }
@@ -1087,6 +1096,8 @@
         }
       }
     }
+      
+    
     
 
                    
