@@ -947,34 +947,7 @@
             "description": "Type of the media",
             "required": true
           },
-          "views": {
-            "type": "integer",
-            "description": "Number of views of the media",
-            "required": true
-          },
-          "likes": {
-            "type": "integer",
-            "description": "Number of likes of the media",
-            "required": true
-          },
-          "dislikes": {
-            "type": "integer",
-            "description": "Number of dislikes of the media",
-            "required": true
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "Date and time when the media was created",
-            "format": "date-time",
-            "required": true
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "Date and time when the media was last updated",
-            "format": "date-time",
-            "required": true
-          },
-          "role": {
+          "Owner": {
             "type": "string",
             "required": true
           }
