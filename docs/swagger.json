@@ -20,7 +20,7 @@
       "description": "Local server"
     },
     {
-      "url": "https://iwacu-kera-backend-2.onrender.com",
+      "url": "https://iwacu-kera-backend-2-couy.onrender.com/api-docs/#/",
       "description": "Production server"
     }
   ],
@@ -622,8 +622,7 @@
                           }
                         }
                       }
-                    }
-                  },
+                    },
                 
               "/api/media/create": {
                 "post": {
@@ -839,7 +838,8 @@
               }
             }
           }
-        },
+        }
+      },
 
             "components": {
               "schemas": {
@@ -1096,6 +1096,7 @@
         }
       }
     }
+    
       
     
     
