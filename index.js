@@ -35,7 +35,7 @@ app.use('/api/pro', proverbRoutes);
 app.use('/api/media', mediaRoutes);
 
 // Database connection
-mongoose.connect( "mongodb+srv://belyseurwidukunda:Urwidukunda0255@cluster0.bhbhd6z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/iwacu-keraproject") 
+mongoose.connect( "mongodb+srv://belyseurwidukunda:Urwidukunda0255@cluster0.bhbhd6z.mongodb.net/iwacu-keraproject") 
 try{
     console.log("DB connected")
     app.listen(PORT,()=>{
