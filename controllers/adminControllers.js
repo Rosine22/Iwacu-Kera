@@ -19,7 +19,7 @@ const register = async (req, res) => {
 
 
 const login = async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password } = req.body;
 
   try {
     // Attempt to find the user by username
@@ -31,7 +31,7 @@ const login = async (req, res) => {
     }
 
     // Verify the password against the stored hashed password
-    const isMatch = await bcryptjs.compare(password, user.password);
+    const isMatch = bcryptjs.compare(password, user.password);
 
     // If the passwords do not match, respond with an error
     if (!isMatch) {
@@ -39,7 +39,7 @@ const login = async (req, res) => {
     }
 
     // If the user is found and the password matches, generate a JWT token
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id, role: user.role },"SECRET", { expiresIn: '1h' });
 
     // Respond with the token
     res.json({ token: token, message: 'Login successful' });
