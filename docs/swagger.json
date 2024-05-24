@@ -171,7 +171,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "description": "ID of the contact to retrieve",
             "required": true,
             "schema": {
@@ -201,8 +201,48 @@
             }
           }
         }
-      },
-      
+      }
+    },
+      "/api/contacts/list": {
+        "get": {
+          "tags": ["Contacts"],
+          "summary": "Get contact by list",
+          "description": "Retrieves a contact by its ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "ID of the contact to retrieve",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Contact not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          }
+        },
+      "/api/contacts/update/:id": {
       "put": {
         "tags": ["Contacts"],
         "summary": "Update a contact",
@@ -250,7 +290,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/contacts/delete/:id": {
       "delete": {
         "tags": ["Contacts"],
         "summary": "Delete a contact",
@@ -290,7 +332,9 @@
           }
         }
       }
-    },
+    }
+  },
+  
     "/api/events/create": {
       "post": {
         "tags": ["Events"],
@@ -328,7 +372,7 @@
             }
           }
         }
-      }
+        }
     },
     "/api/events/:id": {
       "get": {
@@ -959,6 +1003,7 @@
     }
   }
 }
+
    
     
       
