@@ -195,6 +195,30 @@
         }
       }
     },
+    "/api/contacts/:id": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get contact by id",
+        "description": "Retrieves contacts by id",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/contacts/update/:id": {
       "put": {
         "tags": [
