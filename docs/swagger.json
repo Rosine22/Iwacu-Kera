@@ -466,7 +466,7 @@
         }
       }
     },
-    "/api/events/delete/id:": {
+    "/api/events/delete/:id:": {
       "delete": {
         "tags": [
           "Events"
@@ -586,7 +586,7 @@
    
    
    
-    "/api/pro/update/{id}": {
+    "/api/pro/update/:id": {
                     "put": {
                       "tags": [
                         "Proverbs"
@@ -638,7 +638,7 @@
                       }
                     }
                   },
-                  "/api/pro/delete/{id}": {
+                  "/api/pro/delete/:id": {
                     "delete": {
                       "tags": [
                         "Proverbs"
@@ -720,7 +720,7 @@
                       }
                     }
                   },
-                  "/api/media/{id}": {
+                  "/api/media/:id": {
                     "get": {
                       "tags": [
                         "Media"
@@ -807,7 +807,7 @@
                       }
                     }
                   },
-                  "/api/media/update/{id}": {
+                  "/api/media/update/:id": {
                     "put": {
                       "tags": [
                         "Media"
@@ -859,7 +859,7 @@
                       }
                     }
                   },
-                  "/api/media/delete/{id}": {
+                  "/api/media/delete/:id": {
                     "delete": {
                       "tags": [
                         "Media"
