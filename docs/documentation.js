@@ -21,7 +21,7 @@ const swaggerDocumentation = {
             "description": "Local server"
         },
         {
-            "url": "https://iwacu-kera-backend-3.onrender.com/api-docs/#/",
+            "url": "https://iwacu-kera-backend-1.onrender.com/",
             "description": "culture server"
         }
     ],
