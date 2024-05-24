@@ -713,7 +713,7 @@
                 "description": "Retrieve a list of media items based on specified criteria",
                 "parameters": [
                   {
-                    "name": "ids",
+                    "name": "id",
                     "in": "query",
                     "description": "Comma-separated list of media item IDs",
                     "required": false,
