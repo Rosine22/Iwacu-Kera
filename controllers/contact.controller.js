@@ -13,7 +13,6 @@ const contactController = {
           console.log(err.message)
         }
       },
-      
   getContact: async (req, res) => {
     let id;
     try {
@@ -32,24 +31,17 @@ const contactController = {
     res.status(200).json({ task: getOne });
   },
 
-
-
-      getContact: async(req, res) => {
+      getAllContact: async (req, res) => {
         try {
-          const getOne = await contactModel.findById(req.params.id); // Directly pass req.params.id
-          if (!getOne) {
-            return res.status(404).json({ msg: `No task with this id` });
-          }
-          res.status(200).json({
-            task: getOne
+          const getAll = await contactModel.find();
+          res.status(200).json({ // Added missing closing parenthesis
+            task: getAll
           });
-        } catch(err) {
+        } catch (err) {
           console.log(err);
-          res.status(500).json({ msg: 'Server Error' }); // It's good practice to send a response in case of an error
+          res.status(500).json({ msg: 'Server Error' }); // Send a response in case of an error
         }
       },
-      
-
      updateContact: async(req, res) => {
         const contactUpdate = await contactModel.findByIdAndUpdate(req.params.id, req.body,{set:true}) 
         try {
