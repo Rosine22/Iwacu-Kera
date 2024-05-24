@@ -1,3 +1,4 @@
+
 {
   "openapi": "3.1.0",
   "info": {
@@ -48,7 +49,9 @@
   "paths": {
     "/api/v1/admin/register": {
       "post": {
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "summary": "Register as an admin",
         "description": "Registers a new admin user",
         "requestBody": {
@@ -87,7 +90,9 @@
     },
     "/api/v1/admin/login": {
       "post": {
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "summary": "Login as an admin",
         "description": "Logs in an existing admin user",
         "requestBody": {
@@ -126,7 +131,9 @@
     },
     "/api/contacts/create": {
       "post": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "summary": "Create a new contact",
         "description": "Registers a new contact",
         "requestBody": {
@@ -165,13 +172,15 @@
     },
     "/api/contacts/:id": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "summary": "Get contact by ID",
         "description": "Retrieves a contact by its ID",
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "description": "ID of the contact to retrieve",
             "required": true,
             "schema": {
@@ -203,48 +212,35 @@
         }
       }
     },
-      "/api/contacts/list": {
-        "get": {
-          "tags": ["Contacts"],
-          "summary": "Get contact by list",
-          "description": "Retrieves a contact by its ID",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "description": "ID of the contact to retrieve",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Success",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Contact"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Contact not found",
-              "content": {
-                "application/json": {
-                  "schema": {
+    "/api/contacts/list": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get contact list",
+        "description": "Retrieves a list of contacts",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "$ref": "#/components/schemas/Contact"
                   }
                 }
               }
             }
           }
-        },
-      "/api/contacts/update/:id": {
+        }
+      }
+    },
+    "/api/contacts/update/:id": {
       "put": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "summary": "Update a contact",
         "description": "Updates an existing contact",
         "parameters": [
@@ -292,9 +288,12 @@
         }
       }
     },
+    
     "/api/contacts/delete/:id": {
       "delete": {
-        "tags": ["Contacts"],
+        "tags": [
+          "Contacts"
+        ],
         "summary": "Delete a contact",
         "description": "Deletes an existing contact",
         "parameters": [
@@ -316,7 +315,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/Contact"
                 }
-                
               }
             }
           },
@@ -332,12 +330,12 @@
           }
         }
       }
-    }
-  },
-  
+    },
     "/api/events/create": {
       "post": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "summary": "Create a new event",
         "description": "Registers a new event",
         "requestBody": {
@@ -372,17 +370,19 @@
             }
           }
         }
-        }
+      }
     },
     "/api/events/:id": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "summary": "Get event by ID",
         "description": "Retrieves an event by its ID",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "description": "ID of the event to retrieve",
             "required": true,
             "schema": {
@@ -412,10 +412,13 @@
             }
           }
         }
-      },
-      "/api/events/update/:id": {
+      }
+    },
+    "/api/events/update/:id": {
       "put": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "summary": "Update an event",
         "description": "Updates an existing event",
         "parameters": [
@@ -463,9 +466,11 @@
         }
       }
     },
-    "/api/events/delete/:id": {
+    "/api/events/delete/id:": {
       "delete": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "summary": "Delete an event",
         "description": "Deletes an existing event",
         "parameters": [
@@ -502,11 +507,12 @@
           }
         }
       }
-    }
-  },
+    },
     "/api/pro/create": {
       "post": {
-        "tags": ["Proverbs"],
+        "tags": [
+          "Proverbs"
+        ],
         "summary": "Create a new proverb",
         "description": "Registers a new proverb",
         "requestBody": {
@@ -545,27 +551,21 @@
     },
     "/api/pro/list": {
       "get": {
-        "tags": ["Proverbs"],
-        "summary": "Get proverb by list",
-        "description": "Retrieves a proverb by its ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the proverb to retrieve",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Proverbs"
         ],
+        "summary": "Get proverb list",
+        "description": "Retrieves a list of proverbs",
         "responses": {
           "200": {
             "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Proverb"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Proverb"
+                  }
                 }
               }
             }
@@ -583,249 +583,111 @@
         }
       }
     },
-    "/api/pro/update/:id": {
-      "put": {
-        "tags": ["Proverbs"],
-        "summary": "Update a proverb",
-        "description": "Updates an existing proverb",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of the proverb to update",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-          "application/json": {
-          "schema": {
-            "$ref": "#/components/schemas/Proverb"
-                        }
-                      }
-                    }
-                  },
-                  "responses": {
-                    "200": {
-                      "description": "Update successful",
-                      "content": {
-                        "application/json": {
+   
+   
+   
+    "/api/pro/update/{id}": {
+                    "put": {
+                      "tags": [
+                        "Proverbs"
+                      ],
+                      "summary": "Update a proverb",
+                      "description": "Updates an existing proverb",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "description": "ID of the proverb to update",
+                          "required": true,
                           "schema": {
-                            "$ref": "#/components/schemas/Proverb"
+                            "type": "string"
                           }
                         }
-                      }
-                    },
-                    "400": {
-                      "description": "Bad Request - Validation errors",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Proverb"
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "/api/pro/delete/:id": {
-                "delete": {
-                  "tags": ["Proverbs"],
-                  "summary": "Delete a proverb",
-                  "description": "Deletes an existing proverb",
-                  "parameters": [
-                    {
-                      "name": "id",
-                      "in": "path",
-                      "description": "ID of the proverb to delete",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "Deletion successful",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Proverb"
-                          }
-                        }
-                      }
-                    }
-                  },
-                    "404": {
-                      "description": "Proverb not found",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Proverb"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "/api/media/create": {
-                  "post":{
-                    "tags":["Media"],
-                    "summary":"uploads a new media",
-                    "requestBody": {
-                      "required":true,
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Media"
-                          }
-                        }
-                      }
-                    },
-
-             "responses": {
-              "201": {
-                "description": "Upload successfully uploaded",
-                "content": {
-                  "application/json": {
-                    "schema": {
-                      "$ref": "#/components/schemas/Media"
-                    }
-                  }
-                }
-              }
-            },
-             "400": {
-              "description": "Bad Request - Validation errors",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "$ref": "#/components/schemas/Media"
-                  }
-                }
-              }
-            }
-          }
-        },
-
-
-          "/api/media/:id": {
-            "get": {
-              "tags": ["Media"],
-              "summary": "Get media item by ID",
-              "description": "Retrieve a specific media item identified by its ID",
-              "parameters": [
-                {
-                  "name": "id",
-                  "in": "path",
-                  "description": "ID of the media item to retrieve",
-                  "required": true,
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Media item retrieved successfully",
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "$ref": "#/components/schemas/Media"
-                      }
-                    }
-                  }
-                }
-              },
-                "400": {
-                  "description": "Media item not found",
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "$ref": "#/components/schemas/Media"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-              "/api/media/list": {
-                "get": {
-                "tags": ["Media"],
-                "summary": "Get media items by list",
-                "description": "Retrieve a list of media items based on specified criteria",
-                "parameters": [
-                  {
-                    "name": "id",
-                    "in": "query",
-                    "description": "Comma-separated list of media item IDs",
-                    "required": false,
-                    "schema": {
-                      "type": "string"
-                    }
-                  }
-                ],
-                "responses": {
-                  "200": {
-                    "description": "List of media items retrieved successfully",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "#/components/schemas/Media"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                  "400": {
-                    "description": "Bad Request - Invalid query parameters",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "$ref": "#/components/schemas/Media"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-                "/api/media/update/:id": {
-                  "put": {
-                    "tags": ["Media"],
-                    "summary": "Update a media item",
-                    "description": "Update the details of a specific media item identified by its ID",
-                    "parameters": [
-                      {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the media item to update",
+                      ],
+                      "requestBody": {
                         "required": true,
-                        "schema": {
-                          "type": "string"
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "$ref": "#/components/schemas/Proverb"
+                            }
+                          }
                         }
-                      }
-                    ],
-                    "requestBody": {
-                      "required": true,
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Media"
+                      },
+                      "responses": {
+                        "200": {
+                          "description": "Update successful",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Proverb"
+                              }
+                            }
+                          }
+                        },
+                        "400": {
+                          "description": "Bad Request - Validation errors",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Proverb"
+                              }
+                            }
                           }
                         }
                       }
-                    },
-                    "responses": {
-                      "200": {
-                        "description": "Update successfully",
+                    }
+                  },
+                  "/api/pro/delete/{id}": {
+                    "delete": {
+                      "tags": [
+                        "Proverbs"
+                      ],
+                      "summary": "Delete a proverb",
+                      "description": "Deletes an existing proverb",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "description": "ID of the proverb to delete",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "responses": {
+                        "200": {
+                          "description": "Deletion successful",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Proverb"
+                              }
+                            }
+                          }
+                        },
+                        "404": {
+                          "description": "Proverb not found",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Proverb"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "/api/media/create": {
+                    "post": {
+                      "tags": [
+                        "Media"
+                      ],
+                      "summary": "Upload a new media",
+                      "requestBody": {
+                        "required": true,
                         "content": {
                           "application/json": {
                             "schema": {
@@ -833,10 +695,138 @@
                             }
                           }
                         }
+                      },
+                      "responses": {
+                        "201": {
+                          "description": "Upload successful",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        },
+                        "400": {
+                          "description": "Bad Request - Validation errors",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        }
                       }
-                    },
-                      "400": {
-                        "description": "Bad Request - Validation errors",
+                    }
+                  },
+                  "/api/media/{id}": {
+                    "get": {
+                      "tags": [
+                        "Media"
+                      ],
+                      "summary": "Get media item by ID",
+                      "description": "Retrieve a specific media item identified by its ID",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "description": "ID of the media item to retrieve",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "responses": {
+                        "200": {
+                          "description": "Media item retrieved successfully",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        },
+                        "400": {
+                          "description": "Media item not found",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "/api/media/list": {
+                    "get": {
+                      "tags": [
+                        "Media"
+                      ],
+                      "summary": "Get media items list",
+                      "description": "Retrieve a list of media items based on specified criteria",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "query",
+                          "description": "Comma-separated list of media item IDs",
+                          "required": false,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "responses": {
+                        "200": {
+                          "description": "List of media items retrieved successfully",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/components/schemas/Media"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "400": {
+                          "description": "Bad Request - Invalid query parameters",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "/api/media/update/{id}": {
+                    "put": {
+                      "tags": [
+                        "Media"
+                      ],
+                      "summary": "Update a media item",
+                      "description": "Update the details of a specific media item identified by its ID",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "description": "ID of the media item to update",
+                          "required": true,
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      ],
+                      "requestBody": {
+                        "required": true,
                         "content": {
                           "application/json": {
                             "schema": {
@@ -844,66 +834,89 @@
                             }
                           }
                         }
-                      }
-                    }
-                  },
-                    
-              "/api/media/delete/:id":{
-                "delete": {
-                  "tags": ["Media"],
-                  "summary": "Delete a media item",
-                  "description": "Permanently remove a specific media item identified by its ID",
-                  "parameters": [
-                    {
-                      "name": "id",
-                      "in": "path",
-                      "description": "ID of the media item to delete",
-                      "required": true,
-                      "schema": {
-                        "type": "string"
-                      }
-                    }
-                  ],
-                  "responses": {
-                    "200": {
-                      "description": "deletion  successfully",
-                      "content": {
-                        "application/json": {
-                          "schema": {
-                            "$ref": "#/components/schemas/Media"
+                      },
+                      "responses": {
+                        "200": {
+                          "description": "Update successful",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        },
+                        "400": {
+                          "description": "Bad Request - Validation errors",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
                           }
                         }
                       }
                     }
                   },
-                    "404": {
-                      "description": "Media item not found",
-                      "content": {
-                        "application/json": {
+                  "/api/media/delete/{id}": {
+                    "delete": {
+                      "tags": [
+                        "Media"
+                      ],
+                      "summary": "Delete a media item",
+                      "description": "Permanently remove a specific media item identified by its ID",
+                      "parameters": [
+                        {
+                          "name": "id",
+                          "in": "path",
+                          "description": "ID of the media item to delete",
+                          "required": true,
                           "schema": {
-                            "$ref": "#/components/schemas/Media"
+                            "type": "string"
                           }
                         }
-                      }
-                    }
-                  }
-                }
-              },
-
-            "components": {
-              "schemas": {
-                "Admin": {
-                  "type": "object",
-                  "properties": {
-                    "username": {
-                      "type": "string"
-                    },
-                    "password": {
-                      "type": "string",
-                      "format": "password",
-                      "required": true
-                    },
-                  "role": {
+                      ],
+                      "responses": {
+                        "200": {
+                          "description": "Deletion successful",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        },
+                        "404": {
+                          "description": "Media item not found",
+                          "content": {
+                            "application/json": {
+                              "schema": {
+                                "$ref": "#/components/schemas/Media"
+                              }
+                            }
+                          }
+                        }
+                        
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Admin": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "required": true
+          },
+          "role": {
             "type": "string",
             "required": true
           }
@@ -1005,9 +1018,3 @@
 }
 
    
-    
-      
-    
-    
-
-           
