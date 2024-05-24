@@ -11,9 +11,11 @@ const getMedias = async ( req, res) => {
 
 const getMediaById = async (req, res) => {
   try {
-    const media = await Media.findById({_id:req.params.id});
+    const media = await Media.findById({_id:req.params.id})
+    {
     if (!media) return res.status(404).send('No media found');
     res.send(media);
+    }
   } catch (err) {
     res.status(500).send(err.message);
   }
