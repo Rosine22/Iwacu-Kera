@@ -180,11 +180,11 @@
         "parameters": [
           {
             "name": "id",
-            "in": "path",
+            "in": "query",
             "description": "ID of the contact to retrieve",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "object"
             }
           }
         ],
