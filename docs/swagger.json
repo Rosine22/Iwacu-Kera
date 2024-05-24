@@ -170,48 +170,7 @@
         }
       }
     },
-    "/api/contacts/:id": {
-      "get": {
-        "tags": [
-          "Contacts"
-        ],
-        "summary": "Get contact by ID",
-        "description": "Retrieves a contact by its ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "description": "ID of the contact to retrieve",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contact"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Contact not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Contact"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    
     "/api/contacts/list": {
       "get": {
         "tags": [

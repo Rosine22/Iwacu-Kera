@@ -13,18 +13,27 @@ const contactController = {
           console.log(err.message)
         }
       },
-      getAllContact: async (req, res) => {
-        try {
-          const getAll = await contactModel.find();
-          res.status(200).json({ // Added missing closing parenthesis
-            task: getAll
-          });
-        } catch (err) {
-          console.log(err);
-          res.status(500).json({ msg: 'Server Error' }); // Send a response in case of an error
-        }
-      },
       
+  getContact: async (req, res) => {
+    let id;
+    try {
+      // Attempt to parse the id parameter as a MongoDB ObjectId
+      id = mongoose.Types.ObjectId(req.params.id);
+    } catch (error) {
+      // If parsing fails, log an error and respond accordingly
+      console.error('Invalid ID format:', req.params.id);
+      return res.status(400).json({ msg: 'Invalid ID format.' });
+    }
+
+    const getOne = await contactModel.findById(id);
+    if (!getOne) {
+      return res.status(404).json({ msg: `No contact with this id` });
+    }
+    res.status(200).json({ task: getOne });
+  },
+
+
+
       getContact: async(req, res) => {
         try {
           const getOne = await contactModel.findById(req.params.id); // Directly pass req.params.id
