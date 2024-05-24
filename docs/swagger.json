@@ -369,6 +369,7 @@
           }
         }
       },
+      "/api/events/update/:id": {
       "put": {
         "tags": ["Events"],
         "summary": "Update an event",
@@ -416,7 +417,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/events/delete/:id": {
       "delete": {
         "tags": ["Events"],
         "summary": "Delete an event",
@@ -455,7 +458,8 @@
           }
         }
       }
-    },
+    }
+  },
     "/api/pro/create": {
       "post": {
         "tags": ["Proverbs"],
