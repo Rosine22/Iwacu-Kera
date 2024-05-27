@@ -5,6 +5,7 @@ dotenv.config();
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require("./docs/swagger.json");
+const {errorHandler}= require('./Middlewares/ErrorHandler.js')
 
 // Middleware
 const cors = require('cors');
@@ -18,7 +19,7 @@ const {mediaRoutes} = require('./routes/mediaRoutes.js');
 
 // App initialization
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT =  5000;
 
 // Middleware usage
 app.use(express.json());
@@ -29,10 +30,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route usage
 app.use("/api/contacts", router); // Assuming your route files export a router object
-app.use('/api/events', eventRoutes);
-app.use('/api/v1/admin', adminRoutes);
-app.use('/api/pro', proverbRoutes);
-app.use('/api/media', mediaRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/v1/admin", adminRoutes);
+app.use("/api/pro", proverbRoutes);
+app.use("/api/media", mediaRoutes);
 
 // Database connection
 mongoose.connect( "mongodb+srv://belyseurwidukunda:Urwidukunda0255@cluster0.bhbhd6z.mongodb.net/iwacu-keraproject") 
@@ -45,3 +46,5 @@ try{
 }catch(err){
     console.log(err)
 }
+
+app.use(errorHandler)

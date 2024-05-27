@@ -1,4 +1,4 @@
-// Contact controllers here
+const mongoose = require('mongoose') // Contact controllers here
 const contactModel = require( "../models/contact.models.js");
 
 const contactController = {
@@ -13,23 +13,21 @@ const contactController = {
           console.log(err.message)
         }
       },
-  getContact: async (req, res) => {
-    let id;
-    try {
-      // Attempt to parse the id parameter as a MongoDB ObjectId
-      id = mongoose.Types.ObjectId(req.params.id);
-    } catch (error) {
-      // If parsing fails, log an error and respond accordingly
-      console.error('Invalid ID format:', req.params.id);
-      return res.status(400).json({ msg: 'Invalid ID format.' });
-    }
-
-    const getOne = await contactModel.findById(id);
-    if (!getOne) {
-      return res.status(404).json({ msg: `No contact with this id` });
-    }
-    res.status(200).json({ task: getOne });
-  },
+      getContactById: async (req, res, next) => {
+        try{
+            const foundedContact = await contactModel.findById(req.params.id)
+            if (!foundedContact) {
+                return next(new NotFoundError(`Contact not found`))
+            }
+            
+              return  res.status(200).json(foundedContact)
+            }
+        catch (error) {
+            next(error);
+            
+          }
+    },
+      
 
       getAllContact: async (req, res) => {
         try {

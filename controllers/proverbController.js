@@ -9,6 +9,20 @@ const getProverbs = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+const getProverbsById = async (req, res, next) => {
+  try{
+      const foundedProverb = await Proverb.findById(req.params.id)
+      if (!foundedProverb) {
+          return next(new NotFoundError(`Proverb  not found`))
+      }
+      
+        return  res.status(200).json(foundedProverb)
+      }
+  catch (error) {
+      next(error);
+      
+    }
+};
 
 // Create a new proverb
 const createProverb = async (req, res) => {
@@ -54,4 +68,4 @@ const deleteProverb = async (req, res) => {
   }
 };
 
-module.exports = {getProverbs,createProverb,deleteProverb,updateProverb}
+module.exports = {getProverbs,getProverbsById,createProverb,deleteProverb,updateProverb}

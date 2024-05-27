@@ -1,48 +1,75 @@
-// import Event from '../models/eventModel.js';
-const Event = require('../models/eventModel')
+const mongoose = require('mongoose') // Contact controllers here
+const eventModel = require( "../models/eventModel.js");
 
-const getEventById = async (req, res) => {
-  try {
-    const event = await Event.findById(req.params.id);
-    if (!event) return res.status(404).send('No media found');
-    res.send(event);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-};
+const eventController = {
+     createEvent : async (req, res) => {
+        try {
+          const newEvent = await eventModel.create(req.body)
+          res.status(201).json({
+            task: newEvent
+          })
+        }
+        catch (err) {
+          console.log(err.message)
+        }
+      },
+      getEventById: async (req, res, next) => {
+        try{
+            const foundedEvent = await eventModel.findById(req.params.id)
+            if (!foundedEvent) {
+                return next(new NotFoundError(`Contact not found`))
+            }
+            
+              return  res.status(200).json(foundedEvent)
+            }
+        catch (error) {
+            next(error);
+            
+          }
+    },
+      
 
-const createEvent = async (req, res) => {
-  const event = new Event({
-    title: req.body.title,
-    description: req.body.description,
-    date: req.body.date,
-  });
+      getAllEvent: async (req, res) => {
+        try {
+          const getAll = await eventModel.find();
+          res.status(200).json({ // Added missing closing parenthesis
+            task: getAll
+          });
+        } catch (err) {
+          console.log(err);
+          res.status(500).json({ msg: 'Server Error' }); // Send a response in case of an error
+        }
+      },
+     updateEvent: async(req, res) => {
+        const eventUpdate = await eventModel.findByIdAndUpdate(req.params.id, req.body,{set:true}) 
+        try {
+          if(!eventUpdate) {
+            return res.status(400).json({msg:`No event with this id`})
+          }
+          res.status(200).json({
+            task: eventUpdate
+          })
+        }
+        catch(err) {
+          console.log(err)
+        }
+      },
+      deleteEvent: async(req, res) => {
+        const id = req.params.id
+        const Eventdel = await eventModel.findByIdAndDelete(id)
+        try{
+          if(!Eventdel) {
+            return res.status(404).json({msg:`No task with this id`})
+          }
+          res.status(200).json({
+            task: Eventdel
+          })
+        }
+        catch(err) {
+          console.log(err)
+        }
+      }
+    }
+// export default contactController
+module.exports = {eventController}
 
-  try {
-    const newEvent = await event.save();
-    res.status(201).json(newEvent);
-  } catch (error) {
-    res.status(400).json({ message: error });
-  }
-};
-
-const updateEvent = async (req, res) => {
-  try {
-    const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!event) return res.status(404).json({ message: 'Event not found' });
-    res.json(event);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-const  deleteEvent = async (req, res) => {
-  try {
-    const event = await Event.findByIdAndDelete(req.params.id);
-    if (!event) return res.status(404).json({ message: 'Event not found' });
-    res.json({ message: 'Event deleted' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-module.exports = {getEventById,deleteEvent,updateEvent,  createEvent}
