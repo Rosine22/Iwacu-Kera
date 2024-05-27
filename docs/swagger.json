@@ -338,7 +338,7 @@
           }
         }
       },
-      "/api/events/list": {
+      "/api/events/listevents": {
         "get": {
           "tags": ["Events"],
           "summary": "Get all events",
@@ -369,7 +369,7 @@
             }
           }
         },
-    "/api/events/{id}": {
+    "/api/events/list/{id}": {
       "get": {
         "tags": ["Events"],
         "summary": "Get an event by ID",

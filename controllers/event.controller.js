@@ -26,10 +26,8 @@ const eventController = {
             next(error);
             
           }
-    },
-      
-
-      getAllEvent: async (req, res) => {
+    }, 
+      getA: async (req, res) => {
         try {
           const getAll = await eventModel.find();
           res.status(200).json({ // Added missing closing parenthesis
