@@ -46,6 +46,46 @@
     }
   ],
   "paths": {
+    "/api/v1/admin/register": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Register as an admin",
+        "description": "Registers a new admin user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Registration successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        },
+          "400": {
+            "description": "Bad Request - Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        }
+      },
+
     "/api/v1/admin/login": {
       "post": {
         "tags": ["Admin"],
