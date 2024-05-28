@@ -1,10 +1,31 @@
 const mongoose = require('mongoose') // Contact controllers here
 const eventModel = require( "../models/eventModel.js");
+const cloudinary = require("../utils/cloudinary.js");
+const {body, validationResult} = require('express-validator');
 
 const eventController = {
      createEvent : async (req, res) => {
+      
         try {
-          const newEvent = await eventModel.create(req.body)
+          const result = await cloudinary.uploader.upload(req.file.path, function (err, result){
+            if (err) {
+              return res.status(500).json({ msg: err.message });
+            }
+          })
+          const errors = validationResult(req);
+          if (!errors.isEmpty()){
+            return res.status(400).json({ msg: errors.array()[0].msg });      
+          }
+          
+          const newEvent = await eventModel.create({
+            title: req.body.title,
+            description: req.body.description,
+            date: req.body.date,
+            location: req.body.location,
+            image: {
+              url: result.url
+            },
+          })
           res.status(201).json({
             task: newEvent
           })
