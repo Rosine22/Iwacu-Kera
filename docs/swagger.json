@@ -1,5 +1,5 @@
  {
-  "openapi": "3.1.0",
+  "swagger": "2.0",
   "info": {
     "title": "IWACU KERA WEBSITE API",
     "description": "API Specification for the iwacu kera website backend server.",
