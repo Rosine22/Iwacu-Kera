@@ -1,25 +1,24 @@
 // Importing necessary modules
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
 dotenv.config();
-const mongoose = require('mongoose');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require("./docs/swagger.json");
-const {errorHandler}= require('./Middlewares/ErrorHandler.js')
-
+import mongoose from 'mongoose';
+import swaggerDocument from "./docs/documentation.js" ;
+import swaggerUi from "swagger-ui-express"
+import  errorHandler  from './Middlewares/ErrorHandler.js';
 // Middleware
-const cors = require('cors');
+import cors from 'cors';
 
 // Routes
-const {router} = require('./routes/contact.routes.js');
-const {eventRoutes} = require('./routes/event.routes.js');
-const {adminRoutes} = require('./routes/admin.routes.js');
-const {proverbRoutes} = require('./routes/proverbRoutes.js');
-const {mediaRoutes} = require('./routes/mediaRoutes.js');
+import  router  from './routes/contact.routes.js';
+import  eventRoutes  from './routes/event.routes.js';
+import  adminRoutes  from './routes/admin.routes.js';
+import  proverbRoutes  from './routes/proverbRoutes.js';
+import  mediaRoutes  from './routes/mediaRoutes.js';
 
 // App initialization
 const app = express();
-const PORT =  5000;
+const PORT = process.env.PORT || 5000; // Use environment variable for port
 
 // Middleware usage
 app.use(express.json());
@@ -29,22 +28,20 @@ app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Route usage
-app.use("/api/contacts", router); // Assuming your route files export a router object
+app.use("/api/contacts", router);
 app.use("/api/events", eventRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/pro", proverbRoutes);
 app.use("/api/media", mediaRoutes);
 
 // Database connection
-mongoose.connect( "mongodb+srv://belyseurwidukunda:Urwidukunda0255@cluster0.bhbhd6z.mongodb.net/iwacu-keraproject") 
-try{
-    console.log("DB connected")
-    app.listen(PORT,()=>{
-        console.log(`server running on port ${PORT}`);
-    })
+mongoose.connect("mongodb+srv://belyseurwidukunda:Urwidukunda0255@cluster0.bhbhd6z.mongodb.net/iwacu-keraproject");
 
-}catch(err){
-    console.log(err)
-}
+app.listen(PORT, function() {
+    console.log(`Server running on port ${PORT}`);
+});
 
-app.use(errorHandler)
+console.log("DB connected");
+
+// Error handling middleware
+app.use(errorHandler);

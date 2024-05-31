@@ -20,7 +20,7 @@
     },
     {
       "url": "https://iwacu-kera-backend-1.onrender.com/",
-      "description": "Production server"
+      "description": "Culture server"
     }
   ],
   "tags": [
@@ -308,14 +308,6 @@
       "post": {
         "tags": ["Events"],
         "summary": "Create a new event",
-        "parameters":[{
-          "name": "image",
-          "in":"path",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
         "requestBody": {
           "required": true,
           "content": {
@@ -898,10 +890,10 @@
             "format": "date",
             "required": true
           },
-          "image": {
+          "image":{
             "url": {
-              "type":"string",
-              "required":true
+              "type": "string",
+              "required": true
             }
           },
           "location": {

@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const EventSchema = new mongoose.Schema({
-
   title: {
     type: String,
     required: true,
@@ -15,10 +14,9 @@ const EventSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    url: {
-      type:String,
+
+      type: String,
       required: true,
-    }
   },
   location: {
     type: String,
@@ -26,4 +24,4 @@ const EventSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Event', EventSchema);
+export default mongoose.model('Event', EventSchema);

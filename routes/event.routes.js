@@ -1,13 +1,15 @@
-const express = require ('express');
-// import eventController from '../controllers/event.controller.js';
-const eventRoutes = express.Router();
-const {eventController} = require('../controllers/event.controller.js')
-const upload = require('../Middlewares/multer.js')
+import express from 'express';
+import { Router } from 'express';
+import {createEvent,getEventById,getAllEvents,updateEvent,deleteEvent} from '../controllers/event.controller.js';
+// import { eventValidationMiddleware } from '../utils/validation.js'; // Uncomment if needed
+//import  upload  from '../Middlewares/multer.js'; // Assuming upload is a middleware for file uploads
+//import upload from '../Middlewares/multer.js'; //
+const eventRoutes = Router();
 
-eventRoutes.post('/create', upload.single('image'),eventController.createEvent);
-eventRoutes.get('/list/:id', eventController.getEventById);
-eventRoutes.get('/listevents', eventController.getA);
-eventRoutes.put('/update/:id', eventController.updateEvent);
-eventRoutes.delete('/delete/:id', eventController.deleteEvent);
+eventRoutes.post('/create',createEvent);
+eventRoutes.get('/list/:id', getEventById);
+eventRoutes.get('/listevents', getAllEvents);
+eventRoutes.put('/update/:id', updateEvent);
+eventRoutes.delete('/delete/:id', deleteEvent);
 
-module.exports = {eventRoutes};
+export default eventRoutes;

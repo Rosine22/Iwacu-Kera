@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ProverbSchema = new mongoose.Schema({
   title: {
@@ -15,4 +15,4 @@ const ProverbSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Proverb', ProverbSchema);
+export default mongoose.model('Proverb', ProverbSchema);

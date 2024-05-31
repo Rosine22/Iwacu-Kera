@@ -1,9 +1,8 @@
-// models/user.js
-const mongoose = require('mongoose');
-const bcryptjs = require('bcryptjs');
+import mongoose from 'mongoose';
+import bcryptjs from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String, required: false},
+  username: { type: String, required: false },
   password: { type: String, required: false },
   role: { type: String, default: 'admin' }, // 'admin' for admin users
 });
@@ -15,4 +14,4 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

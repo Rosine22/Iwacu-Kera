@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const MediaSchema = new mongoose.Schema({
   title: {
@@ -25,7 +25,7 @@ const MediaSchema = new mongoose.Schema({
     default: 'image',
     required: true
   },
-  Owner: {
+  owner: {
     type: String,
     ref: 'User'
   }
@@ -38,7 +38,7 @@ MediaSchema.virtual('thumbnail').get(function() {
 
 // Pre-save hook to update timestamps
 MediaSchema.pre('save', function(next) {
-  this.updatedAt = Date.now();
+  this.updatedAt = Date.now(); // Corrected dot notation
   next();
 });
 
@@ -47,4 +47,4 @@ MediaSchema.statics.createThumbnailUrl = function(link) {
   return `${link}?size=small`;
 };
 
-module.exports = mongoose.model('Media', MediaSchema);
+export default mongoose.model('Media', MediaSchema);

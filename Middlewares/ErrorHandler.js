@@ -1,4 +1,3 @@
-
 /**
  * Error handling middleware function.
  *
@@ -11,7 +10,7 @@
  *
  * @description This middleware function is responsible for handling errors that occur during the execution of the application.
  * It extracts the error status code and message, if available, or defaults to 500 and "Internal Server Error" respectively.
- * The function then sends a JSON response wit
+ * The function then sends a JSON response with error details.
  */
 const errorHandler = (err, req, res, next) => {
     const errStatus = err.statusCode || 500;
@@ -21,8 +20,8 @@ const errorHandler = (err, req, res, next) => {
         success: false,
         status: errStatus,
         message: errMessage,
-        stack: process.env.NODE_ENV === "development" ? err.stack : {}
-    })
+        stack: process.env.NODE_ENV === "development"? err.stack : undefined
+    });
 };
 
-module.exports= {errorHandler}
+export default errorHandler;

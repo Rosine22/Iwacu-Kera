@@ -1,20 +1,12 @@
-import CustomError from "./CustomError.js";
-
-/**
- * Custom error class for handling bad request errors.
- * @extends {CustomError} - Extends the CustomError class.
- */
-export class BadRequestError extends CustomError {
+class CustomError extends Error {
     /**
-     * Constructor for the BadRequestError class.
-     * @param {string} message - The error message to be displayed.
+     * Constructor for CustomError.
+     * @param {string} message - The error message to be displayed when the error is thrown.
      */
     constructor(message) {
-        /**
-         * Call the superclass constructor with the provided message.
-         * @param {string} message - The error message to be displayed
-         */
+        // Call the superclass constructor with the provided error message.
         super(message);
-        this.statusCode = 400;
     }
 }
+
+export default CustomError;

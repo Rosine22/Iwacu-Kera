@@ -1,6 +1,8 @@
-const express = require('express');
-const proverbRoutes = express.Router();
-const {getProverbs,createProverb,deleteProverb,updateProverb, getProverbsById} = require('../controllers/proverbController.js');
+import express from 'express';
+import { Router } from 'express';
+import { getProverbs, createProverb, deleteProverb, updateProverb, getProverbsById } from '../controllers/proverbController.js';
+
+const proverbRoutes = Router();
 
 proverbRoutes.get('/list', getProverbs);
 proverbRoutes.get('/:id', getProverbsById);
@@ -8,4 +10,4 @@ proverbRoutes.post('/create', createProverb);
 proverbRoutes.put('/update/:id', updateProverb);
 proverbRoutes.delete('/delete/:id', deleteProverb);
 
-module.exports = {proverbRoutes};
+export default proverbRoutes;

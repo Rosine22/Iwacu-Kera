@@ -1,94 +1,98 @@
-const mongoose = require('mongoose') // Contact controllers here
-const eventModel = require( "../models/eventModel.js");
-const cloudinary = require("../utils/cloudinary.js");
-const {body, validationResult} = require('express-validator');
 
-const eventController = {
-     createEvent : async (req, res) => {
-      
-        try {
-          const result = await cloudinary.uploader.upload(req.file.path, function (err, result){
-            if (err) {
-              return res.status(500).json({ msg: err.message });
-            }
-          })
-          const errors = validationResult(req);
-          if (!errors.isEmpty()){
-            return res.status(400).json({ msg: errors.array()[0].msg });      
-          }
-          
-          const newEvent = await eventModel.create({
-            title: req.body.title,
-            description: req.body.description,
-            date: req.body.date,
-            location: req.body.location,
-            image: {
-              url: result.url
-            },
-          })
-          res.status(201).json({
-            task: newEvent
-          })
-        }
-        catch (err) {
-          console.log(err.message)
-        }
-      },
-      getEventById: async (req, res, next) => {
-        try{
-            const foundedEvent = await eventModel.findById(req.params.id)
-            if (!foundedEvent) {
-                return next(new NotFoundError(`Contact not found`))
-            }
-            
-              return  res.status(200).json(foundedEvent)
-            }
-        catch (error) {
-            next(error);
-            
-          }
-    }, 
-      getA: async (req, res) => {
-        try {
-          const getAll = await eventModel.find();
-          res.status(200).json({ // Added missing closing parenthesis
-            task: getAll
-          });
-        } catch (err) {
-          console.log(err);
-          res.status(500).json({ msg: 'Server Error' }); // Send a response in case of an error
-        }
-      },
-     updateEvent: async(req, res) => {
-        const eventUpdate = await eventModel.findByIdAndUpdate(req.params.id, req.body,{set:true}) 
-        try {
-          if(!eventUpdate) {
-            return res.status(400).json({msg:`No event with this id`})
-          }
-          res.status(200).json({
-            task: eventUpdate
-          })
-        }
-        catch(err) {
-          console.log(err)
-        }
-      },
-      deleteEvent: async(req, res) => {
-        const id = req.params.id
-        const Eventdel = await eventModel.findByIdAndDelete(id)
-        try{
-          if(!Eventdel) {
-            return res.status(404).json({msg:`No task with this id`})
-          }
-          res.status(200).json({
-            task: Eventdel
-          })
-        }
-        catch(err) {
-          console.log(err)
-        }
-      }
+import eventModel from '../models/eventModel.js';
+//import cloudinary from '../utils/cloudinary.js';
+//import  upload  from '../Middlewares/multer.js';
+//import  body  from 'express-validator';
+import { validationResult } from 'express-validator';
+import  asyncWrapper  from '../Middlewares/async.js';
+
+// Define your validation middleware separately
+// import eventValidationMiddleware from '../Middlewares/eventValidationMiddleware.js';
+
+//export const test = asyncWrapper(async (req, res, next) => {
+  //console.log(req.body);
+  //console.log(req.files);
+  //console.log(req.file);
+  
+  //next();
+//});
+
+export const createEvent = asyncWrapper(async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ msg: errors.array()[0].msg });
+  }
+
+  try {
+    //const result = await cloudinary.uploader.upload(req.file.path,function(err,result){
+      //if (err) {
+        //return res.status(500).json({ msg: err.message });
+      //}
+    //});
+    
+    const newEvent = await eventModel.create({
+      title: req.body.title,
+      description: req.body.description,
+      date: req.body.date,
+      location: req.body.location,
+      image: req.body.image
+    });
+
+    res.status(201).json({ task: newEvent });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+export const getEventById = asyncWrapper(async (req, res) => {
+  try {
+    const foundedEvent = await eventModel.findById(req.params.id);
+    if (!foundedEvent) {
+      return res.status(404).json({ msg: 'Event not found' });
     }
-// export default contactController
-module.exports = {eventController}
+    res.status(200).json(foundedEvent);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+export const getAllEvents = asyncWrapper(async (req, res) => {
+  try {
+    const getAll = await eventModel.find();
+    res.status(200).json({ task: getAll });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+export const updateEvent = asyncWrapper(async (req, res) => {
+  try {
+    const eventUpdate = await eventModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!eventUpdate) {
+      return res.status(404).json({ msg: 'No event with this ID' });
+    }
+    res.status(200).json({ task: eventUpdate });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+export const deleteEvent = asyncWrapper(async (req, res) => {
+  try {
+    const eventDel = await eventModel.findByIdAndDelete(req.params.id);
+    if (!eventDel) {
+      return res.status(404).json({ msg: 'No event with this ID' });
+    }
+    res.status(200).json({ task: eventDel });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+})
+
+
 

@@ -1,11 +1,6 @@
-import CustomError from "./CustomError.js";
+import CustomError from './CustomError'; // Ensure the path is correct
 
-/**
- * @class
- * @classdesc Custom error class for 404 Not Found responses.
- * @extends {CustomError}
- */
-export class NotFoundError extends CustomError {
+class NotFoundError extends CustomError {
     /**
      * Creates a new NotFoundError instance.
      * @param {string} message - Error message.
@@ -20,3 +15,5 @@ export class NotFoundError extends CustomError {
         this.statusCode = 404;
     }
 }
+
+export default NotFoundError;
