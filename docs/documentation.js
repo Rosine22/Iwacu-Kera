@@ -34,8 +34,18 @@ const swaggerDocumentation = {
         "/api/v1/admin/register": {
             "post": {
                 "tags": ["Admin"],
-                "summary": "Test API endpoint",
-                "description": "Returns a 'Hello World!' message",
+                "summary": "register admin",
+                "description": "Registered successfully",
+                "requestBody": {
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Admin"
+                      }
+                    }
+                  }
+                },
                 "responses": {
                     "200": {
                         "description": "Success",
