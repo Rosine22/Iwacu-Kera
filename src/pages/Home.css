@@ -1,0 +1,45 @@
+/* Home.css */
+
+/* Title Animation */
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Subtitle Animation */
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Apply animations */
+  .animate-title {
+    animation: slideInFromLeft 1s ease-in-out, pulse 2s infinite;
+  }
+  
+  .animate-subtitle {
+    animation: slideInFromRight 1s ease-in-out, pulse 2s infinite;
+  }
+  
+  /* Pulse effect */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  
