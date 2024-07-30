@@ -24,7 +24,7 @@ const Contact = () => {
       });
 
       if (response.status === 201) {
-        toast.success('Kohereza Ubutumwa byagenze neza!', {
+        toast.success('Message Sent Successfully!', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: true,
@@ -35,7 +35,7 @@ const Contact = () => {
         });
         setFormData({ name: '', subject: '', message: '' });
       } else {
-        toast.error('Kohereza ubutumwa ntago byagenze.Mwongere mugerageze', {
+        toast.error('Message not sent', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: true,
@@ -63,13 +63,13 @@ const Contact = () => {
 
     <div className='px-4 py-[10%] bg-gray-50 min-h-screen'>
       <ToastContainer />
-      <h1 className='text-4xl font-extrabold text-center mb-10'>Twandikire Udusangize ibitekerezo</h1>
+      <h1 className='text-4xl font-extrabold text-center mb-10'>Leave us a Message</h1>
       <div className='flex flex-col lg:flex-row justify-center items-center gap-20'>
         <img src='/imigongo1.jpg' alt='Imigongo' className='w-full lg:w-1/2 rounded-lg shadow-md' />
         <div className='w-full lg:w-1/2'>
           <form onSubmit={handleSubmit}>
             <div className='mb-6'>
-              <label htmlFor='name' className='block text-gray-700 text-lg mb-1'>Amazina yombi</label>
+              <label htmlFor='name' className='block text-gray-700 text-lg mb-1'>Names</label>
               <input 
                 type='text' 
                 id='name' 
@@ -77,12 +77,12 @@ const Contact = () => {
                 value={formData.name} 
                 onChange={handleChange} 
                 className='form-input rounded-lg h-12 w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 px-3' 
-                placeholder='Andika amazina yombi' 
+                placeholder='Write your Names' 
                 required 
               />
             </div>
             <div className='mb-6'>
-              <label htmlFor='subject' className='block text-gray-700 text-lg mb-1 '>Umutwe</label>
+              <label htmlFor='subject' className='block text-gray-700 text-lg mb-1 '>Subject</label>
               <input 
                 type='text' 
                 id='subject' 
@@ -90,26 +90,26 @@ const Contact = () => {
                 value={formData.subject} 
                 onChange={handleChange} 
                 className='form-input rounded-lg h-12 w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 px-3' 
-                placeholder='Andika icyo ugiye kuvugaho' 
+                placeholder='Write the subject you want to talk about' 
                 required 
               />
             </div>
             <div className='mb-6'>
-              <label htmlFor='message' className='block text-gray-700 text-lg mb-1'>Ubutumwa</label>
+              <label htmlFor='message' className='block text-gray-700 text-lg mb-1'>Message</label>
               <textarea 
                 id='message' 
                 name='message' 
                 value={formData.message} 
                 onChange={handleChange} 
                 className='form-textarea rounded-lg h-40 w-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 px-3' 
-                placeholder='Andika ubutumwa burambuye' 
+                placeholder='Write the message' 
                 required 
               ></textarea>
             </div>
             <button 
               type='submit' 
               className='bg-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500'>
-             Ohereza Ubutumwa
+             Send Message
             </button>
 
     
