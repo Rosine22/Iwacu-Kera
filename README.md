@@ -1,12 +1,8 @@
+How Iwacu Kera App works
+It is an App that is totaly accessible by user with a Home Page ready for them to view. Users don't need to sign in to
+access it's features. 
+Upon landing on the homepage you can explore History page which has feature like Museum , Kings, Activity and Proverbs.
+There is also Practical information page with Media, Events and Contact Us pages.
 
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-=======
-# Iwacu-Kera-backend
 
